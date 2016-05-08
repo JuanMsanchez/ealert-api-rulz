@@ -1,0 +1,26 @@
+{
+  "name": "ealert-api-rulz",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ./test/index.js",
+    "devel": "NODE_ENV=development DEBUG=elstalert-rulz:* ./node_modules/.bin/nodemon index.js"
+  },
+  "author": "Juan Manuel Sanchez <usuario.jm@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "basic-auth": "^1.0.3",
+    "body-parser": "^1.15.1",
+    "elasticsearch": "^11.0.1",
+    "express": "^4.13.4",
+    "json2yaml": "^1.1.0",
+    "lodash": "^4.11.2"
+  },
+  "devDependencies": {
+    "debug": "^2.2.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.2",
+    "request": "^2.72.0"
+  }
+}
