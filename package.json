@@ -1,7 +1,7 @@
 {
   "name": "ealert-api-rulz",
   "version": "0.1.0",
-  "description": "",
+  "description": "ealert-api-rulz is a small API that enable to manage ealastalert rules",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test/index.js",
