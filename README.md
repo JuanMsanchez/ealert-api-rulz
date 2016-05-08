@@ -1,6 +1,6 @@
 ealert-api-rulz
 ====
-ealert-api-rulz is a small API that enable to manage ealastalert(https://github.com/Yelp/elastalert) rules CRUD via
+Is small API that enable to manage ealastalert(https://github.com/Yelp/elastalert) rules CRUD via
 REST requests. Here some relevant points about the API:
 
 - The API will store all the rules in a elasticsearch database and the filesystem.
