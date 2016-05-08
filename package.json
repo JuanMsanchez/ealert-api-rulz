@@ -8,6 +8,13 @@
     "devel": "NODE_ENV=development DEBUG=elstalert-rulz:* ./node_modules/.bin/nodemon index.js"
   },
   "author": "Juan Manuel Sanchez <usuario.jm@gmail.com>",
+  "keywords": [
+    "ealastalert",
+    "elasticsearch",
+    "rules",
+    "api"
+  ],
+  "repository": "JuanMsanchez/ealert-api-rulz",
   "license": "MIT",
   "dependencies": {
     "basic-auth": "^1.0.3",
