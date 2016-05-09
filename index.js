@@ -17,7 +17,7 @@ var client = new elasticsearch.Client({
   host: config.es_host + ":" + config.es_port
 });
 
-var RULZ_PATH     = config.path     || "./rules";
+var RULZ_PATH     = config.path     || "./rules/";
 var RULZ_INDEX    = config.index    || "rulez";
 var RULZ_TYPE     = config.type     || "rule";
 var RULZ_DEFAULTS = config.defaults || {};
@@ -101,12 +101,13 @@ app.get('/elastalert/rule', auth, function(req, res)
 app.post('/elastalert/rule', auth, function(req, res)
 {
   debug("POST /elastalert/rule");
-
   var data = {
     index : RULZ_INDEX,
     type  : RULZ_TYPE,
     body  : rulzValidator.filter(req.body, RULZ_DEFAULTS)
   };
+
+
 
   client.create(data, function(err, rule)
   {
