@@ -7,18 +7,19 @@ module.exports = {
     if(defaults)
       rule = _.defaults(rule, defaults);
 
-    if(!rule.type)
+    if(TRHOW_ERRORS && !rule.type)
       throw new Error("No rule type defined");
 
     var errors       = [];
     var filteredRule = {};
-    var tmplt        = _.assign(BASE_RULE, RULE_TYPE[rule.type.toLowerCase()]);
+    var tmplt        = _.merge({}, BASE_RULE, RULE_TYPE[rule.type.toLowerCase()]);
+
     _.forEach(tmplt, function(value, key)
     {
-      if(value.required && typeof rule[value.name] == 'undefined')
-        errors.push("Required field " + value.name + " not found");
-      else
-        filteredRule[value.name] = rule[value.name];
+      if(value.required && typeof rule[key] == 'undefined')
+        errors.push("Required field " + key + " not found");
+      else if(rule[key])
+        filteredRule[key] = rule[key];
     });
 
     if(TRHOW_ERRORS && errors.length > 0)
@@ -28,116 +29,114 @@ module.exports = {
   }
 };
 
-var BASE_RULE = [
-  { name :"es_host", required: true},
-  { name :"es_port", required: true},
-  { name :"index", required: true},
-  { name :"name" },
-  { name :"type", required: true},
-  { name :"alert", required: true},
-  { name :"use_strftime_index"},
-  { name :"use_ssl"},
-  { name :"es_username"},
-  { name :"es_password"},
-  { name :"aggregation"},
-  { name :"description", required: true},
-  { name :"generate_kibana_link"},
-  { name :"use_kibana_dashboard"},
-  { name :"kibana_url"},
-  { name :"use_kibana4_dashboard"},
-  { name :"kibana4_start_timedelta"},
-  { name :"kibana4_end_timedelta"},
-  { name :"use_local_time"},
-  { name :"realert"},
-  { name :"exponential_realert"},
-  { name :"match_enhancements"},
-  { name :"top_count_number"},
-  { name :"top_count_keys"},
-  { name :"raw_count_keys"},
-  { name :"include"},
-  { name :"filter"},
-  { name :"max_query_size"},
-  { name :"query_delay"},
-  { name :"buffer_time"},
-  { name :"timestamp_type"},
-  { name :"timestamp_format"},
-  { name :"_source_enabled"}
-];
+var BASE_RULE = {
+  "es_host":{ required: true},
+  "es_port":{ required: true},
+  "index":{required: true},
+  "name":{},
+  "type": {required: true},
+  "alert": {required: true},
+  "email":{},
+  "use_strftime_index":{},
+  "use_ssl":{},
+  "es_username":{},
+  "es_password":{},
+  "aggregation":{},
+  "description": {required: true},
+  "generate_kibana_link":{},
+  "use_kibana_dashboard":{},
+  "kibana_url":{},
+  "use_kibana4_dashboard":{},
+  "kibana4_start_timedelta":{},
+  "kibana4_end_timedelta":{},
+  "use_local_time":{},
+  "realert":{},
+  "exponential_realert":{},
+  "match_enhancements":{},
+  "top_count_number":{},
+  "top_count_keys":{},
+  "raw_count_keys":{},
+  "include":{},
+  "filter":{},
+  "max_query_size":{},
+  "query_delay":{},
+  "buffer_time":{},
+  "timestamp_type":{},
+  "timestamp_format":{},
+  "_source_enabled":{}
+};
 
 var RULE_TYPE = {
-  any : [
-    { name :"query_key"}
-  ],
+  any : {
+    "query_key": {}
+  },
 
-  blacklist : [
-    { name : "compare_key", required: true},
-    { name : "blacklist", required: true}
-  ],
+  blacklist : {
+    "compare_key": {required: true},
+    "blacklist": {required: true}
+  },
 
-  whitelist : [
-    { name : "compare_key", required: true},
-    { name : "whitelist", required: true},
-    { name : "ignore_null", required: true}
-  ],
+  whitelist : {
+    "compare_key":{required: true},
+    "whitelist":{required: true},
+    "ignore_null":{required: true}
+  },
 
-  change : [
-    { name : "compare_key", required: true},
-    { name : "ignore_null", required: true},
-    { name : "query_key", required: true},
-    { name : "timeframe"}
-  ],
+  change : {
+    "compare_key": {required: true},
+    "ignore_null": {required: true},
+    "query_key": {required: true},
+    "timeframe": {}
+  },
 
-  frequency : [
-    { name :"query_key"},
-    { name :"timeframe", required: true},
-    { name :"num_events", required: true},
-    { name :"attach_related"},
-    { name :"use_count_query"},
-    { name :"doc_type"},
-    { name :"use_terms_query"},
-    { name :"query_key"},
-    { name :"terms_size"}
-  ],
+  frequency : {
+    "query_key" :{},
+    "timeframe" :{required: true},
+    "num_events" :{required: true},
+    "attach_related" :{},
+    "use_count_query" :{},
+    "doc_type" :{},
+    "use_terms_query" :{},
+    "terms_size" :{}
+  },
 
-  spike : [
-    { name :"query_key"},
-    { name :"timeframe", required: true},
-    { name :"spike_height", required: true},
-    { name :"spike_type", required: true},
-    { name :"use_count_query"},
-    { name :"doc_type"},
-    { name :"use_terms_query"},
-    { name :"query_key"},
-    { name :"terms_size"},
-    { name :"alert_on_new_data"},
-    { name :"threshold_ref"},
-    { name :"threshold_cur"}
-  ],
+  spike : {
+    "query_key":{},
+    "timeframe":{required: true},
+    "spike_height":{required: true},
+    "spike_type":{required: true},
+    "use_count_query":{},
+    "doc_type":{},
+    "use_terms_query":{},
+    "terms_size":{},
+    "alert_on_new_data":{},
+    "threshold_ref":{},
+    "threshold_cur":{}
+  },
 
-  flatline : [
-    { name :"query_key"},
-    { name :"timeframe", required: true},
-    { name :"threshold", required: true},
-    { name :"use_count_query"},
-    { name :"doc_type"}
-  ],
+  flatline : {
+    "query_key":{},
+    "timeframe":{required: true},
+    "threshold":{required: true},
+    "use_count_query":{},
+    "doc_type":{}
+  },
 
-  newterm : [
-    { name :"query_key", required: true},
-    { name :"fields", required: true},
-    { name :"use_terms_query"},
-    { name :"doc_type"},
-    { name :"query_key"},
-    { name :"terms_size"},
-    { name :"terms_window_size"},
-    { name :"alert_on_missing_fields"}
-  ],
+  newterm : {
+    "query_key":{required: true},
+    "fields":{required: true},
+    "use_terms_query":{},
+    "doc_type":{},
+    "terms_size":{},
+    "terms_window_size":{},
+    "alert_on_missing_fields":{}
+  },
 
-  cardinality : [
-    { name :"query_key"},
-    { name :"timeframe", required: true},
-    { name :"cardinality_field", required: true},
-    { name :"max_cardinality"},
-    { name :"min_cardinality"}
-  ]
+  cardinality : {
+    "query_key":{},
+    "timeframe":{required: true},
+    "cardinality_field":{required: true},
+    "max_cardinality":{},
+    "min_cardinality":{}
+  }
 };
