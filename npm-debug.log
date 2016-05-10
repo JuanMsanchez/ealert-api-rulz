@@ -1,0 +1,113 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /home/juansan/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/home/juansan/.npm/ealert-api-rulz/0.1.1/package.tgz', '.' ]
+11 verbose tarball /home/juansan/.npm/ealert-api-rulz/0.1.1/package.tgz
+12 verbose folder .
+13 info prepublish ealert-api-rulz@0.1.1
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /home/juansan/.npm/1f1177db-tar.lock
+16 silly lockFile 0f425214-alert-api-rulz-0-1-1-package-tgz tar:///home/juansan/.npm/ealert-api-rulz/0.1.1/package.tgz
+17 verbose lock tar:///home/juansan/.npm/ealert-api-rulz/0.1.1/package.tgz /home/juansan/.npm/0f425214-alert-api-rulz-0-1-1-package-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 0f425214-alert-api-rulz-0-1-1-package-tgz tar:///home/juansan/.npm/ealert-api-rulz/0.1.1/package.tgz
+21 silly lockFile 0f425214-alert-api-rulz-0-1-1-package-tgz tar:///home/juansan/.npm/ealert-api-rulz/0.1.1/package.tgz
+22 silly lockFile 11c8f24b-pm-ealert-api-rulz-0-1-1-package /home/juansan/.npm/ealert-api-rulz/0.1.1/package
+23 verbose lock /home/juansan/.npm/ealert-api-rulz/0.1.1/package /home/juansan/.npm/11c8f24b-pm-ealert-api-rulz-0-1-1-package.lock
+24 silly lockFile 11c8f24b-pm-ealert-api-rulz-0-1-1-package /home/juansan/.npm/ealert-api-rulz/0.1.1/package
+25 silly lockFile 11c8f24b-pm-ealert-api-rulz-0-1-1-package /home/juansan/.npm/ealert-api-rulz/0.1.1/package
+26 silly lockFile 3a52ce78- .
+27 silly lockFile 3a52ce78- .
+28 silly publish { name: 'ealert-api-rulz',
+28 silly publish   version: '0.1.1',
+28 silly publish   description: 'ealert-api-rulz is a small API that enable to manage ealastalert rules',
+28 silly publish   main: 'index.js',
+28 silly publish   scripts:
+28 silly publish    { test: './node_modules/mocha/bin/mocha ./test/index.js',
+28 silly publish      devel: 'NODE_ENV=development DEBUG=elstalert-rulz:* ./node_modules/.bin/nodemon index.js' },
+28 silly publish   author: { name: 'Juan Manuel Sanchez', email: 'usuario.jm@gmail.com' },
+28 silly publish   keywords: [ 'ealastalert', 'elasticsearch', 'rules', 'api' ],
+28 silly publish   bin: { 'ealert-api': 'bin/ealert-api' },
+28 silly publish   repository:
+28 silly publish    { type: 'git',
+28 silly publish      url: 'https://github.com/JuanMsanchez/ealert-api-rulz' },
+28 silly publish   license: 'MIT',
+28 silly publish   dependencies:
+28 silly publish    { debug: '^2.2.0',
+28 silly publish      'basic-auth': '^1.0.3',
+28 silly publish      'body-parser': '^1.15.1',
+28 silly publish      elasticsearch: '^11.0.1',
+28 silly publish      express: '^4.13.4',
+28 silly publish      json2yaml: '^1.1.0',
+28 silly publish      lodash: '^4.11.2' },
+28 silly publish   devDependencies: { mocha: '^2.4.5', nodemon: '^1.9.2', request: '^2.72.0' },
+28 silly publish   readme: 'ealert-api-rulz\n====\nIs small API that enable to manage ealastalert(https://github.com/Yelp/elastalert) rules CRUD via\nREST requests. Here some relevant points about the API:\n\n- The API will store all the rules in a elasticsearch database and the filesystem.\n\n- To avoid the unique rule name constraint from ealert we use the elasticsearch id as the rule name, we encorage you to use the description field instead.\n\n- No Validation, the API will not validate the data in the request, but it will filter the body grabbing only the fields allowed by elastalert depending on the rule type(http://elastalert.readthedocs.io/en/latest/ruletypes.html)\n\n- This is a beta version, so use it as you own risk.\n\n\nInstall\n---\n    npm install -g ealert-api-rulz\n\nUsage\n---\nealert-api-rulz enables the next endpoints:\n    GET    /elastalert/rule/:id\n    GET    /elastalert/rule\n    POST   /elastalert/rule\n    PUT    /elastalert/rule/:id\n    DELETE /elastalert/rule/:id\n\nDefaults & Config\n---\nYou can find the default config on this repo ``.ealertapirc``.\n\n    {\n      //the port were the API will run\n      "port" : 3000,\n\n      //if the auth key is in the configuration file the API will start with basic http authentication\n      "auth" : {\n        "user" : "root",\n        "pass" : "root"\n      },\n\n      //elastic host and port where the API will store the saved data\n      "es_host" : "localhost",\n      "es_port" : "9200",\n\n      //path to the elastalert rules directory\n      "path" : "./rules",\n\n      //index and type name for the rules data\n      "index": "rulez",\n      "type" : "rule",\n\n      //default data to be merged with the requests\n      "defaults" : {\n        "es_host" : "elasticsearch_host",\n        "es_port" : 9200\n      }\n    }\n\nTest\n===\n    npm run test\n',
+28 silly publish   readmeFilename: 'README.md',
+28 silly publish   gitHead: '7dc48730274df3eb2e56f82da9bc256809aa4473',
+28 silly publish   bugs: { url: 'https://github.com/JuanMsanchez/ealert-api-rulz/issues' },
+28 silly publish   homepage: 'https://github.com/JuanMsanchez/ealert-api-rulz',
+28 silly publish   _id: 'ealert-api-rulz@0.1.1',
+28 silly publish   _shasum: '501a8a951f6c4eae5c11a7dfe0ff813fb7817074',
+28 silly publish   _from: '.' }
+29 verbose request where is /ealert-api-rulz
+30 verbose request registry http://registry.npmjs.org/
+31 verbose request id 46278bff9d3cc900
+32 verbose url raw /ealert-api-rulz
+33 verbose url resolving [ 'http://registry.npmjs.org/', './ealert-api-rulz' ]
+34 verbose url resolved http://registry.npmjs.org/ealert-api-rulz
+35 verbose request where is http://registry.npmjs.org/ealert-api-rulz
+36 info trying registry request attempt 1 at 17:29:16
+37 http PUT http://registry.npmjs.org/ealert-api-rulz
+38 http 403 http://registry.npmjs.org/ealert-api-rulz
+39 verbose headers { 'content-type': 'application/json',
+39 verbose headers   'cache-control': 'max-age=300',
+39 verbose headers   'content-length': '95',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   date: 'Tue, 10 May 2016 20:29:16 GMT',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   connection: 'keep-alive',
+39 verbose headers   'x-served-by': 'cache-lax1431-LAX',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1462912156.646858,VS0,VE344',
+39 verbose headers   vary: 'Accept-Encoding' }
+40 error publish Failed PUT 403
+41 error Error: "You cannot publish over the previously published version 0.1.1." : ealert-api-rulz
+41 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:308:14)
+41 error     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:246:65)
+41 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:236:22)
+41 error     at Request.emit (events.js:98:17)
+41 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1142:14)
+41 error     at Request.emit (events.js:117:20)
+41 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1096:12)
+41 error     at IncomingMessage.emit (events.js:117:20)
+41 error     at _stream_readable.js:944:16
+41 error     at process._tickCallback (node.js:442:13)
+42 error If you need help, you may report this *entire* log,
+42 error including the npm and node versions, at:
+42 error     <http://github.com/npm/npm/issues>
+43 error System Linux 3.13.0-85-generic
+44 error command "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+45 error cwd /var/www/canopus/ealert-api
+46 error node -v v0.10.36
+47 error npm -v 1.4.28
+48 verbose exit [ 1, true ]

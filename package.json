@@ -1,6 +1,6 @@
 {
   "name": "ealert-api-rulz",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ealert-api-rulz is a small API that enable to manage ealastalert rules",
   "main": "index.js",
   "scripts": {
