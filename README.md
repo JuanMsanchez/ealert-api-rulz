@@ -27,7 +27,7 @@ ealert-api-rulz enables the next endpoints:
 
 Defaults & Config
 ---
-In order to run, the API needs a configuration file on his root directory. You can find an example in this repo, rename it to ``eaapi.config.json`` and set the values to fit your needs.
+You can find the default config on this repo ``.ealertapirc``.
 
     {
       //the port were the API will run
