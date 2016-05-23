@@ -43,6 +43,10 @@ You can find the default config on this repo ``.ealertapirc``.
       "es_host" : "localhost",
       "es_port" : "9200",
 
+      //(Optional) basic-auth username and password for elasticsearch
+      "es_username": "someusername"
+      "es_password": "somepassword"
+
       //path to the elastalert rules directory
       "path" : "./rules",
 
