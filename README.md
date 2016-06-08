@@ -27,7 +27,8 @@ ealert-api-rulz enables the next endpoints:
 
 Defaults & Config
 ---
-You can find the default config on this repo ``.ealertapirc``.
+You can find the default config on this repo ``ealertapirc.conf``.
+On init ``etc/ealertapirc.conf`` will be generated, and the configuration data will be loaded from that location.
 
     {
       //the port were the API will run
@@ -63,4 +64,5 @@ You can find the default config on this repo ``.ealertapirc``.
 
 Test
 ===
-    npm run test
+    npm run test (with the API up & running)
+    elastalert-test-rule --alert /opt/rules/backup/test.yam
